@@ -1,0 +1,34 @@
+services:
+  MongoDB1:
+    image: mongodb/mongodb-enterprise-server:latest
+    container_name: MongoDB1
+    ports:
+      - "27017:27017"
+    command: mongod --replSet myReplicaSet
+    volumes:
+      - ./MongoDB1/Metadata:/data/db
+    restart: always
+
+  MongoDB2:
+    image: mongodb/mongodb-enterprise-server:latest
+    container_name: MongoDB2
+    ports:
+      - "27018:27017"
+    command: mongod --replSet myReplicaSet
+    volumes:
+      - ./MongoDB2/Metadata:/data/db
+    restart: always
+
+  MongoDB3:
+    image: mongodb/mongodb-enterprise-server:latest
+    container_name: MongoDB3
+    ports:
+      - "27019:27017"
+    command: mongod --replSet myReplicaSet
+    volumes:
+      - ./MongoDB3/Metadata:/data/db
+    restart: always
+
+networks:
+  mongo-cluster:
+    driver: bridge
