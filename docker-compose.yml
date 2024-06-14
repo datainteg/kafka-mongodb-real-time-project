@@ -1,3 +1,4 @@
+version: '3'
 services:
   MongoDB1:
     image: mongodb/mongodb-enterprise-server:latest
@@ -8,6 +9,8 @@ services:
     volumes:
       - ./MongoDB1/Metadata:/data/db
     restart: always
+    networks:
+      - mongo-cluster
 
   MongoDB2:
     image: mongodb/mongodb-enterprise-server:latest
@@ -18,6 +21,8 @@ services:
     volumes:
       - ./MongoDB2/Metadata:/data/db
     restart: always
+    networks:
+      - mongo-cluster
 
   MongoDB3:
     image: mongodb/mongodb-enterprise-server:latest
@@ -28,6 +33,8 @@ services:
     volumes:
       - ./MongoDB3/Metadata:/data/db
     restart: always
+    networks:
+      - mongo-cluster
 
 networks:
   mongo-cluster:
